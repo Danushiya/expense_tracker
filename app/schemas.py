@@ -41,3 +41,13 @@ class ExpenseResponse(BaseModel):
 
     model_config = ConfigDict(from_attributes=True)
 
+class CategorySummary(BaseModel):
+    category: str
+    total: float
+    percentage: float
+
+
+class MonthlySummaryResponse(BaseModel):
+    month: str
+    total_spend: float
+    categories: list[CategorySummary]

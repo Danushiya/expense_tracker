@@ -1,14 +1,17 @@
-from datetime import date
+from datetime import date, datetime
 
 from fastapi import APIRouter, Depends, HTTPException, status, Response
 from sqlalchemy.orm import Session
-
+from sqlalchemy import func
+from calendar import monthrange
 from app.database import get_db
 from app.models import Expense, Category
 from app.schemas import (
     ExpenseCreate,
     ExpenseUpdate,
     ExpenseResponse,
+    MonthlySummaryResponse,
+    CategorySummary,
 )
 
 router = APIRouter(
@@ -56,6 +59,84 @@ def get_expenses(
         )
         for e in expenses
     ]
+
+
+@router.get(
+    "/summary",
+    response_model=MonthlySummaryResponse,
+)
+def get_summary(
+    month: str,
+    db: Session = Depends(get_db),
+):
+    try:
+        target_month = datetime.strptime(month, "%Y-%m")
+    except ValueError:
+        raise HTTPException(
+            status_code=400,
+            detail="Month must be in YYYY-MM format.",
+        )
+
+    from calendar import monthrange
+    from datetime import date
+
+    year = target_month.year
+    month_number = target_month.month
+
+    last_day = monthrange(year, month_number)[1]
+
+    start_date = date(year, month_number, 1)
+    end_date = date(year, month_number, last_day)
+
+    total = (
+        db.query(func.sum(Expense.amount))
+        .filter(
+            Expense.spent_on >= start_date,
+            Expense.spent_on <= end_date,
+        )
+        .scalar()
+        or 0
+    )
+
+    results = (
+        db.query(
+            Category.name,
+            func.sum(Expense.amount),
+        )
+        .join(Expense)
+        .filter(
+            Expense.spent_on >= start_date,
+            Expense.spent_on <= end_date,
+        )
+        .group_by(Category.name)
+        .all()
+    )
+
+    category_summary = []
+
+    for name, category_total in results:
+
+        percentage = 0
+
+        if total > 0:
+            percentage = round(
+                (category_total / total) * 100,
+                2,
+            )
+
+        category_summary.append(
+            CategorySummary(
+                category=name,
+                total=category_total,
+                percentage=percentage,
+            )
+        )
+
+    return MonthlySummaryResponse(
+        month=month,
+        total_spend=total,
+        categories=category_summary,
+    )
 
 @router.get(
     "/{expense_id}",
