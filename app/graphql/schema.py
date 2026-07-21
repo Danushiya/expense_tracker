@@ -11,6 +11,35 @@ from app.models import Category, Expense
 class CategoryType:
     id: int
     name: str
+    
+    @strawberry.field
+    def expenses(self) -> list["ExpenseType"]:
+
+        db = SessionLocal()
+
+        try:
+            expenses = (
+                db.query(Expense)
+                .filter(Expense.category_id == self.id)
+                .all()
+            )
+
+            return [
+                ExpenseType(
+                    id=expense.id,
+                    amount=expense.amount,
+                    description=expense.description,
+                    spent_on=expense.spent_on,
+                    category=CategoryType(
+                        id=expense.category.id,
+                        name=expense.category.name,
+                    ),
+                )
+                for expense in expenses
+            ]
+
+        finally:
+            db.close()
 
 
 @strawberry.type
@@ -79,40 +108,6 @@ class Query:
                 )
 
             expenses = query.all()
-
-            return [
-                ExpenseType(
-                    id=expense.id,
-                    amount=expense.amount,
-                    description=expense.description,
-                    spent_on=expense.spent_on,
-                    category=CategoryType(
-                        id=expense.category.id,
-                        name=expense.category.name,
-                    ),
-                )
-                for expense in expenses
-            ]
-
-        finally:
-            db.close()
-
-@strawberry.type
-class CategoryType:
-    id: int
-    name: str
-
-    @strawberry.field
-    def expenses(self) -> list["ExpenseType"]:
-
-        db = SessionLocal()
-
-        try:
-            expenses = (
-                db.query(Expense)
-                .filter(Expense.category_id == self.id)
-                .all()
-            )
 
             return [
                 ExpenseType(
