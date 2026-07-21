@@ -6,43 +6,6 @@ This project was developed as a capstone project to demonstrate REST API develop
 
 ---
 
-## 🚀 Features
-
-### REST API
-- CRUD operations for Categories
-- CRUD operations for Expenses
-- Filter expenses by:
-  - Category
-  - From Date
-  - To Date
-- Monthly expense summary
-- Proper HTTP status codes
-- Input validation with Pydantic
-- Interactive Swagger documentation
-
-### GraphQL API
-- Query all categories
-- Query expenses with filters
-- Nested category and expense relationships
-- Add Expense mutation
-- Delete Expense mutation
-
-### Frontend
-- View all expenses
-- Add new expenses
-- Category dropdown loaded using GraphQL
-- Monthly summary
-- Responsive design
-- Built using plain HTML, CSS, and JavaScript
-
-### Testing
-- REST API tests with Pytest
-- GraphQL endpoint tests
-- Separate test database
-- FastAPI TestClient
-
----
-
 ## 🛠️ Tech Stack
 
 - Python 3.11+
