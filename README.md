@@ -273,58 +273,13 @@ The project includes a `curl.md` file containing sample cURL commands for:
 
 ## 📷 Screenshots
 
-### Home Page
+<p align="center">
+  <img src="expense1.png" alt="Expense Tracker Dashboard" width="900">
+</p>
 
-> Add your project screenshot here.
-
-```
-assets/home.png
-```
-
-### Swagger UI
-
-> Add Swagger screenshot here.
-
-```
-assets/swagger.png
-```
-
-### GraphQL Playground
-
-> Add GraphQL screenshot here.
-
-```
-assets/graphql.png
-```
-
----
-
-## 📚 Learning Outcomes
-
-This project demonstrates:
-
-- REST API design
-- GraphQL API development
-- FastAPI dependency injection
-- SQLAlchemy ORM
-- Database relationships
-- Pydantic validation
-- CRUD operations
-- Filtering and query parameters
-- Automated testing with Pytest
-- GraphQL queries and mutations
-- Frontend integration using Fetch API
-- Responsive web design
-
----
-
-## 👩‍💻 Author
-
-**Danushiya**
-
-GitHub: https://github.com/Danushiya
-
-LinkedIn: https://www.linkedin.com/in/danushiya
+<p align="center">
+  <img src="expense2.png" alt="Expense Tracker Dashboard" width="900">
+</p>
 
 ---
 
