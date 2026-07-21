@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="table-container">
+
+        <h1>Expense Tracker</h1>
+
+        <h2>Add Expense</h2>
+
+        <form id="expense-form">
+
+            <input
+                type="number"
+                id="amount"
+                placeholder="Amount"
+                required
+            >
+
+            <input
+                type="text"
+                id="description"
+                placeholder="Description"
+                required
+            >
+
+            <input
+                type="date"
+                id="spent_on"
+                required
+            >
+
+            <select
+                id="category"
+                required
+            >
+                <option value="">
+                    Select Category
+                </option>
+            </select>
+
+            <button type="submit">
+                Add Expense
+            </button>
+
+        </form>
+
+        <hr>
+
+        <h2>Expenses</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Category</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="expense-table">
+
+            </tbody>
+
+        </table>
+
+        <hr>
+
+        <h2>Monthly Summary</h2>
+
+        <input
+            type="month"
+            id="month"
+        >
+
+        <button id="summary-btn">
+            Load Summary
+        </button>
+
+        <div id="summary">
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
