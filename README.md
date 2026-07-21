@@ -101,13 +101,13 @@ expense-tracker/
 Clone the repository
 
 ```bash
-git clone https://github.com/your-username/expense-tracker.git
+git clone https://github.com/Danushiya/expense_tracker.git
 ```
 
 Move into the project
 
 ```bash
-cd expense-tracker
+cd expense_tracker
 ```
 
 Create a virtual environment
