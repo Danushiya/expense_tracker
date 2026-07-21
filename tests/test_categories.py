@@ -1,6 +1,5 @@
 from tests.conftest import client
 
-
 def test_create_category():
 
     response = client.post(
