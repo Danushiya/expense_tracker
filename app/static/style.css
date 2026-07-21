@@ -24,6 +24,123 @@ form {
     margin-bottom: 20px;
 }
 
+.form-card {
+
+    background: white;
+
+    padding: 25px;
+
+    margin-bottom: 30px;
+
+    border-radius: 16px;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+}
+
+.form-card h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 20px;
+
+    color: #2563eb;
+
+    font-size: 1.4rem;
+
+}
+
+#expense-form {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+
+}
+
+#expense-form input,
+#expense-form select {
+
+    width: 100%;
+
+    padding: 14px 16px;
+
+    font-size: 15px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    transition: all 0.25s ease;
+
+    box-sizing: border-box;
+
+}
+
+#expense-form input:focus,
+#expense-form select:focus {
+
+    outline: none;
+
+    border-color: #2563eb;
+
+    background: white;
+
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+
+}
+
+#expense-form button {
+
+    grid-column: 1 / -1;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+#expense-form button:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+
+}
+
+#expense-form button:active {
+
+    transform: scale(0.98);
+
+}
+
+@media (max-width: 768px) {
+
+    #expense-form {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
 input,
 select,
 button {
@@ -44,20 +161,74 @@ button:hover {
 
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     margin-top: 15px;
+    border: 1px solid #dbe3ec;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+thead,
+tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+tbody {
+    display: block;
+    max-height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 th,
 td {
-    border: 1px solid #ccc;
-    padding: 10px;
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
     text-align: left;
 }
 
 th {
-    background-color: #2563eb;
+    background: #2563eb;
     color: white;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+/* Rounded header corners */
+th:first-child {
+    border-top-left-radius: 12px;
+}
+
+th:last-child {
+    border-top-right-radius: 12px;
+}
+
+/* Hover effect */
+tbody tr:hover {
+    background: #f8fbff;
+}
+
+/* Scrollbar */
+tbody::-webkit-scrollbar {
+    width: 8px;
+}
+
+tbody::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+tbody::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 10px;
+}
+
+tbody::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
 }
 
 #summary {
